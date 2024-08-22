@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="try_again">Try Again</string>
+    <string name="search">Search</string>
+    <string name="invite_friend_desc">You can earn \$10 when you invite a friend to buy crypto.</string>
+    <string name="invite_friend">Invite your friend.</string>
+    <string name="sorry">Sorry</string>
+    <string name="no_result">No result matches this keyword.</string>
+    <string name="buy">Buy, sell and hold crypto</string>
+    <string name="top">Top</string>
+    <string name="three">3</string>
+    <string name="rank">rank crypto</string>
+    <string name="price">PRICE</string>
+    <string name="market">MARKET CAP</string>
+    <string name="website">GO TO WEBSITE</string>
+    <string name="description">No description</string>
+    <string name="success_refresh">Coins are updated!</string>
+</resources>

@@ -1,0 +1,122 @@
+[versions]
+agp = "8.4.2"
+kotlin = "2.0.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.4"
+activityCompose = "1.9.1"
+composeBom = "2024.08.00"
+secret = "2.0.1"
+ktlint = "12.1.1"
+detekt = "1.23.6"
+coil = "2.6.0"
+composeRule = "0.4.10"
+
+# google
+google-ksp = "2.0.0-1.0.21"
+google-hilt = "2.51.1"
+jupiter = "5.10.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+#rule
+rule-ktlint = { group = "io.nlopez.compose.rules", name = "ktlint",version.ref = "composeRule" }
+rule-detekt = { group = "io.nlopez.compose.rules", name = "detekt",version.ref = "composeRule" }
+
+# requirements
+androidx-splash = { group = "androidx.core", name = "core-splashscreen", version = "1.0.1" }
+androidx-multidex = { group = "androidx.multidex", name = "multidex", version = "2.0.1" }
+serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.6.3" }
+desugaring = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.0.4" }
+date-time = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.5.0" }
+google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-hilt" }
+google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "google-hilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
+compose-paging = { group = "androidx.paging", name = "paging-compose", version = "3.3.2" }
+# network
+network-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
+network-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
+network-retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
+network-retrofit-coroutines = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlin-coroutines-adapter", version = "0.9.2" }
+network-profiler = { group = "com.localebro", name = "okhttpprofiler", version = "1.0.8" }
+secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secret" }
+# test
+jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
+jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+jupiter-param = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "jupiter" }
+assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.28.0" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.8.0" }
+# gradle plugin
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+[bundles]
+androidx-core = [
+    "androidx-core-ktx",
+    "androidx-lifecycle-runtime-ktx",
+    "androidx-splash",
+    "androidx-multidex"
+]
+androidx-compose = [
+    "androidx-activity-compose",
+    "androidx-ui",
+    "androidx-ui-graphics",
+    "androidx-ui-tooling-preview",
+    "androidx-material3",
+    "compose-paging",
+    "hilt-navigation",
+    "compose-coil",
+    "compose-coil-svg",
+]
+androidx-compose-debug = [
+    "androidx-ui-tooling",
+    "androidx-ui-test-manifest"
+]
+network = [
+    "network-okhttp",
+    "network-profiler",
+    "network-retrofit",
+    "network-retrofit-coroutines",
+    "network-retrofit-serialization"
+]
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+# requirement
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
+google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "google-hilt" }
+secrets = {  id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secret"}
+junit5 = { id = "de.mannodermaus.android-junit5", version = "1.10.0.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+# custom plugin for lineman
+kyawlinnthant-android-application = { id = "com.kyawlinnthant.android.application", version = "unspecified" }
+kyawlinnthant-compose-application = { id = "com.kyawlinnthant.compose.application", version = "unspecified" }
+kyawlinnthant-android-library = { id = "com.kyawlinnthant.android.library", version = "unspecified" }
+kyawlinnthant-compose-library = { id = "com.kyawlinnthant.compose.library", version = "unspecified" }
+kyawlinnthant-hilt = { id = "com.kyawlinnthant.dagger.hilt", version = "unspecified" }
+kyawlinnthant-network = { id = "com.kyawlinnthant.retrofit.network", version = "unspecified" }
