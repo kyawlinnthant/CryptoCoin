@@ -5,6 +5,7 @@ In this project, I utilized a modern Android development stack to ensure high-qu
 - **Kotlin**
 - **Jetpack Compose** for building the UI
 - **Splash Screen** for app launch splash
+- **Custom Gradle Plugin** for build 
 - **Retrofit** for networking
 - **Coroutines** and **Flow** for asynchronous programming and data streams
 - **Material3** design system for UI consistency
