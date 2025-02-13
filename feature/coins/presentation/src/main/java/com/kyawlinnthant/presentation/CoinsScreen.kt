@@ -102,11 +102,14 @@ fun CoinsScreen(
                             }
                         },
                         onSuccess = { vo ->
-                            DetailSheet(coinDetail = vo) {
-                                scope.launch {
-                                    uriHandler.openUri(it)
-                                }
-                            }
+                            DetailSheet(
+                                coinDetail = vo,
+                                onGoWebsite = {
+                                    scope.launch {
+                                        uriHandler.openUri(it)
+                                    }
+                                },
+                            )
                         },
                         onError = {
                             Box(
