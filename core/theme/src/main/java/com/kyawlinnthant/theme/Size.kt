@@ -2,12 +2,10 @@ package com.kyawlinnthant.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-data class LineManSize(
+data class Size(
     val one: Dp = 1.dp,
     val tiny: Dp = 2.dp,
     val small: Dp = 4.dp,
@@ -27,10 +25,8 @@ data class LineManSize(
     val defaultAlpha: Float = 0.5f,
 )
 
-@Suppress("CompositionLocalNaming")
-val LocalSize = compositionLocalOf { LineManSize() }
+val DefaultSize = Size()
 
-val MaterialTheme.dimen: LineManSize
+val MaterialTheme.dimen: Size
     @Composable
-    @ReadOnlyComposable
-    get() = LocalSize.current
+    get() = DefaultSize

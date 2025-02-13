@@ -4,7 +4,7 @@ import java.util.Locale
 import kotlin.math.abs
 
 object CoinDisplayFormatter {
-    const val INVITE_URL = "https://careers.lmwn.com/"
+    const val INVITE_URL = "https://coinranking.com/"
     private const val DIVIDER = 5
     private const val TRILLION_LENGTH = 12
     private const val BILLION_LENGTH = 9

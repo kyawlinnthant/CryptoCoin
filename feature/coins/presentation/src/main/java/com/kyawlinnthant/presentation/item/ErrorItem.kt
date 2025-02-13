@@ -21,10 +21,10 @@ import com.kyawlinnthant.theme.dimen
 
 @Composable
 fun ErrorItem(
-    modifier: Modifier = Modifier,
-    enabledFullScreen: Boolean = false,
     message: String,
     onRetry: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabledFullScreen: Boolean = false,
 ) {
     Column(
         modifier =
@@ -56,7 +56,7 @@ private fun Preview(
         ErrorItem(
             message = "Could not load data",
             enabledFullScreen = enabled,
-        ) {
-        }
+            onRetry = {},
+        )
     }
 }

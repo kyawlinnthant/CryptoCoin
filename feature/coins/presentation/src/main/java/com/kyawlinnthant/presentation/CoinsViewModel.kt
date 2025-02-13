@@ -15,7 +15,6 @@ import com.kyawlinnthant.domain.vo.RequestState
 import com.kyawlinnthant.presentation.state.CoinsAction
 import com.kyawlinnthant.presentation.state.CoinsEvent
 import com.kyawlinnthant.presentation.state.CoinsViewModelState
-import com.kyawlinnthant.presentation.state.RefreshEvent
 import com.kyawlinnthant.util.DataResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -47,9 +46,6 @@ class CoinsViewModel
         private val vmCoinEvent = MutableSharedFlow<CoinsEvent>()
         val coinEvent: SharedFlow<CoinsEvent> get() = vmCoinEvent
 
-        private val vmRefreshEvent = MutableSharedFlow<RefreshEvent>()
-        val refreshEvent: SharedFlow<RefreshEvent> get() = vmRefreshEvent
-
         private val vmState = MutableStateFlow(CoinsViewModelState())
 
         val coinsState =
@@ -79,20 +75,6 @@ class CoinsViewModel
 
         init {
             fetchCoins()
-            startPeriodicRefresh()
-        }
-
-        private var timer: Job? = null
-
-        private fun startPeriodicRefresh() {
-            timer?.cancel() // restart the timer
-            timer =
-                viewModelScope.launch {
-                    while (true) {
-                        delay(10.seconds)
-                        vmRefreshEvent.emit(RefreshEvent.RefreshTimerReach)
-                    }
-                }
         }
 
         fun onAction(action: CoinsAction) {
@@ -103,7 +85,6 @@ class CoinsViewModel
                 CoinsAction.OnDismissSheet -> updateBottomSheetState(shouldShow = false)
                 CoinsAction.OnRetryDetail -> getCoinDetail()
                 is CoinsAction.RefreshCoins -> refreshPage(action.size)
-                CoinsAction.RestartTimer -> startPeriodicRefresh()
             }
         }
 

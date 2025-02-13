@@ -34,9 +34,9 @@ import com.kyawlinnthant.util.CoinDisplayFormatter
 
 @Composable
 fun TopHeader(
-    modifier: Modifier = Modifier,
     coin: CoinVo,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val formattedChange = CoinDisplayFormatter.formatCoinChange(input = coin.change)
 
@@ -55,6 +55,7 @@ fun TopHeader(
         }
 
     ElevatedCard(
+        modifier = modifier,
         colors =
             CardDefaults.elevatedCardColors(
                 containerColor = MaterialTheme.colorScheme.background,
@@ -63,7 +64,7 @@ fun TopHeader(
     ) {
         Column(
             modifier =
-                modifier
+                Modifier
                     .width(MaterialTheme.dimen.topRank)
                     .padding(vertical = MaterialTheme.dimen.base2x, horizontal = MaterialTheme.dimen.base),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -76,10 +77,10 @@ fun TopHeader(
                         .decoderFactory(SvgDecoder.Factory())
                         .build(),
                 contentDescription = null,
-                modifier = modifier.size(MaterialTheme.dimen.base6x),
+                modifier = Modifier.size(MaterialTheme.dimen.base6x),
             )
 
-            Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
 
             Text(
                 text = coin.symbol,
@@ -91,7 +92,7 @@ fun TopHeader(
                     ),
             )
 
-            Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
 
             Text(
                 text = coin.name,
@@ -102,7 +103,7 @@ fun TopHeader(
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = MaterialTheme.dimen.defaultAlpha),
                     ),
             )
-            Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 icon?.let {
@@ -110,7 +111,7 @@ fun TopHeader(
                         painter = painterResource(id = it),
                         contentDescription = null,
                         tint = color,
-                        modifier = modifier.size(MaterialTheme.dimen.base2x),
+                        modifier = Modifier.size(MaterialTheme.dimen.base2x),
                     )
                 }
                 Text(
@@ -139,8 +140,8 @@ private fun Preview() {
                     price = "11233.2345456",
                     change = "0.98",
                 ),
-        ) {
-        }
+            onClick = {},
+        )
     }
 }
 
@@ -156,7 +157,7 @@ private fun NegativePreview() {
                     price = "11233.2345456",
                     change = "-0.98",
                 ),
-        ) {
-        }
+            onClick = {},
+        )
     }
 }

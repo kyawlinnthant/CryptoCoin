@@ -10,11 +10,11 @@ import com.kyawlinnthant.domain.vo.RequestState
 
 @Composable
 fun <T> ResultDisplayView(
-    onIdle: (@Composable () -> Unit)? = null,
     onLoading: @Composable () -> Unit,
     onSuccess: @Composable (T) -> Unit,
     onError: @Composable (String) -> Unit,
     requestState: RequestState<T>,
+    onIdle: (@Composable () -> Unit)? = null,
 ) {
     AnimatedContent(
         targetState = requestState,

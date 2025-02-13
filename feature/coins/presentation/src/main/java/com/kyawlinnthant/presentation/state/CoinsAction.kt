@@ -12,6 +12,4 @@ sealed interface CoinsAction {
     data class OnPullRefresh(val refreshing: Boolean) : CoinsAction
 
     data object OnRetryDetail : CoinsAction
-
-    data object RestartTimer : CoinsAction
 }

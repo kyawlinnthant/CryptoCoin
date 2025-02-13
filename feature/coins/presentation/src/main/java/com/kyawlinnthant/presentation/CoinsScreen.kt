@@ -42,8 +42,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CoinsScreen() {
-    val viewModel: CoinsViewModel = hiltViewModel()
+fun CoinsScreen(
+    modifier: Modifier = Modifier,
+    viewModel: CoinsViewModel = hiltViewModel(),
+) {
     val searchWidget = viewModel.searchWidget.collectAsState()
     val coinsState = viewModel.coinsState.collectAsState()
     val searchState = viewModel.searchedState.collectAsState()
@@ -64,14 +66,15 @@ fun CoinsScreen() {
     }
 
     Scaffold(
+        modifier = modifier,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             SearchTopBar(
                 searchQuery = searchState.value.keyword,
-                onTextChanged = {
+                onTextChange = {
                     viewModel.onAction(CoinsAction.UpdateKeyword(it))
                 },
-                onClearQueryClicked = {
+                onClearQueryClick = {
                     viewModel.onAction(CoinsAction.UpdateKeyword(""))
                 },
             )
@@ -114,16 +117,21 @@ fun CoinsScreen() {
                                         .navigationBarsPadding(),
                                 contentAlignment = Alignment.Center,
                             ) {
-                                ErrorItem(message = it) {
-                                    viewModel.onAction(CoinsAction.OnRetryDetail)
-                                }
+                                ErrorItem(
+                                    message = it,
+                                    onRetry = {
+                                        viewModel.onAction(CoinsAction.OnRetryDetail)
+                                    },
+                                )
                             }
                         },
                         requestState = detailState.value.data,
                     )
                 },
-                windowInsets = WindowInsets(0, 0, 0, 0),
                 sheetState = rememberModalBottomSheetState(),
+                contentWindowInsets = {
+                    WindowInsets(0, 0, 0, 0)
+                },
             )
         }
 
@@ -159,14 +167,7 @@ fun CoinsScreen() {
                             uriHandler.openUri(CoinDisplayFormatter.INVITE_URL)
                         }
                     },
-                    onRefreshAll = {
-                        viewModel.onAction(CoinsAction.RefreshCoins(it))
-                    },
-                    onRestartTimer = {
-                        viewModel.onAction(CoinsAction.RestartTimer)
-                    },
                     windowWidth = window.width,
-                    refreshEvent = viewModel.refreshEvent,
                 )
         }
     }

@@ -25,8 +25,12 @@ class AndroidLibraryPlugin : Plugin<Project> {
                 defaultConfig.targetSdk = AppConfig.TARGET_SDK
             }
             val cores = libs.findBundle("androidx-core").get()
+            val ktlintRule = libs.findLibrary("rule-ktlint").get()
+            val detektRule = libs.findLibrary("rule-detekt").get()
             dependencies {
                 add("implementation",cores)
+                add("ktlint", ktlintRule)
+                add("detektPlugins", detektRule)
             }
         }
     }

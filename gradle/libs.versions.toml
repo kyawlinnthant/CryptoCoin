@@ -1,22 +1,22 @@
 [versions]
-agp = "8.4.2"
-kotlin = "2.0.0"
-coreKtx = "1.13.1"
+agp = "8.8.0"
+kotlin = "2.1.0"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.4"
-activityCompose = "1.9.1"
-composeBom = "2024.08.00"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.10.0"
+composeBom = "2025.02.00"
 secret = "2.0.1"
-ktlint = "12.1.1"
+ktlint = "12.1.2"
 detekt = "1.23.6"
-coil = "2.6.0"
-composeRule = "0.4.10"
+coil = "2.7.0"
+composeRule = "0.4.22"
 
 # google
-google-ksp = "2.0.0-1.0.21"
-google-hilt = "2.51.1"
+google-ksp = "2.1.0-1.0.29"
+google-hilt = "2.55"
 jupiter = "5.10.1"
 
 [libraries]

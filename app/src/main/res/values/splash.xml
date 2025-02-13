@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="Theme.Crypto.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.Crypto</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_pho_lo</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+    </style>
+</resources>

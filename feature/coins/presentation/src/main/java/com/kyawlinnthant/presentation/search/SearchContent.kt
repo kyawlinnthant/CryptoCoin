@@ -41,12 +41,12 @@ import com.kyawlinnthant.util.CoinDisplayFormatter
 
 @Composable
 fun SearchContent(
-    modifier: Modifier = Modifier,
     searchCoins: LazyPagingItems<CoinVo>,
     paddingValues: PaddingValues,
     windowWidth: WindowType,
     onItemClick: (String) -> Unit,
     onInviteClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val lazyListState = rememberLazyListState()
     val lazyGridState = rememberLazyGridState()
@@ -92,7 +92,7 @@ fun SearchContent(
                                     },
                                 )
                                 if (shouldShowInvite) {
-                                    Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+                                    Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
                                     InviteFriendItem(onClick = onInviteClick)
                                 }
                             }
@@ -105,7 +105,7 @@ fun SearchContent(
                         LazyVerticalGrid(
                             columns = GridCells.Fixed(2),
                             modifier =
-                                modifier
+                                Modifier
                                     .fillMaxWidth()
                                     .heightIn(max = screenHeightDp),
                             contentPadding = PaddingValues(MaterialTheme.dimen.base2x),
@@ -139,7 +139,7 @@ fun SearchContent(
                         LazyVerticalGrid(
                             columns = GridCells.Fixed(3),
                             modifier =
-                                modifier
+                                Modifier
                                     .fillMaxWidth()
                                     .heightIn(max = screenHeightDp),
                             contentPadding = PaddingValues(MaterialTheme.dimen.base2x),
@@ -195,7 +195,7 @@ fun SearchContent(
                             // end item
                             HorizontalDivider(
                                 modifier =
-                                    modifier
+                                    Modifier
                                         .fillMaxWidth()
                                         .padding(vertical = MaterialTheme.dimen.small),
                             )
@@ -205,13 +205,13 @@ fun SearchContent(
             }
 
             item {
-                Spacer(modifier = modifier.navigationBarsPadding())
+                Spacer(modifier = Modifier.navigationBarsPadding())
             }
         }
 
         when (loadState.refresh) {
             is LoadState.Loading -> {
-                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     // should be FULL SCREEN LOADING
                     LoadingItem(enabledFullScreen = true)
                 }
@@ -220,7 +220,7 @@ fun SearchContent(
             is LoadState.Error -> {
                 val error = this.loadState.refresh as LoadState.Error
                 val message = error.error.localizedMessage ?: "Can't load data"
-                Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     // should be FULL SCREEN ERROR
                     ErrorItem(
                         message = message,

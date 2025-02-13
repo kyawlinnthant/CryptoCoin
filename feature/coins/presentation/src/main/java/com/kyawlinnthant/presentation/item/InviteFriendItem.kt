@@ -27,8 +27,8 @@ import com.kyawlinnthant.theme.dimen
 
 @Composable
 fun InviteFriendItem(
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val text =
         buildAnnotatedString {
@@ -55,7 +55,7 @@ fun InviteFriendItem(
     ) {
         Row(
             modifier =
-                modifier
+                Modifier
                     .fillMaxWidth()
                     .padding(MaterialTheme.dimen.base2x),
             verticalAlignment = Alignment.CenterVertically,
@@ -64,11 +64,11 @@ fun InviteFriendItem(
             Image(
                 painter = painterResource(id = R.drawable.invite),
                 contentDescription = null,
-                modifier = modifier.size(MaterialTheme.dimen.base6x),
+                modifier = Modifier.size(MaterialTheme.dimen.base6x),
             )
-            Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
             Text(
-                modifier = modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 text = text,
                 style = MaterialTheme.typography.labelMedium,
             )
@@ -80,7 +80,6 @@ fun InviteFriendItem(
 @Preview
 private fun Preview() {
     LineManWongNaiTheme {
-        InviteFriendItem {
-        }
+        InviteFriendItem(onClick = {})
     }
 }

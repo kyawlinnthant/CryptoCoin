@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "com.kyawlinnthant.linemanwongnai"
+    namespace = "com.kyawlinnthant.crypto"
 
     defaultConfig {
-        applicationId = "com.kyawlinnthant.linemanwongnai"
+        applicationId = "com.kyawlinnthant.crypto"
         versionCode = 1
         versionName = "0.0.1" // X.Y.Z ( Major.Minor.Patch)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

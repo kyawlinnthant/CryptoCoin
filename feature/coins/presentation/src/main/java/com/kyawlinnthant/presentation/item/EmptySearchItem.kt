@@ -32,7 +32,7 @@ fun EmptySearchItem(modifier: Modifier = Modifier) {
             text = stringResource(id = R.string.sorry),
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
         )
-        Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
         Text(
             text = stringResource(id = R.string.no_result),
             style = MaterialTheme.typography.labelMedium,

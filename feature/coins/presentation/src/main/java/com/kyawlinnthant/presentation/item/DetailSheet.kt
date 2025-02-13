@@ -33,9 +33,9 @@ import com.kyawlinnthant.util.CoinPriceDecimalPlace
 
 @Composable
 fun DetailSheet(
-    modifier: Modifier = Modifier,
     coinDetail: CoinDetailVo,
     onGoWebsite: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val formattedPrice =
         CoinDisplayFormatter.formatCoinPrice(
@@ -53,7 +53,7 @@ fun DetailSheet(
         state = rememberLazyListState(),
     ) {
         item {
-            Row(modifier = modifier.fillMaxWidth()) {
+            Row(modifier = Modifier.fillMaxWidth()) {
                 AsyncImage(
                     model =
                         ImageRequest.Builder(LocalContext.current)
@@ -61,12 +61,12 @@ fun DetailSheet(
                             .decoderFactory(SvgDecoder.Factory())
                             .build(),
                     contentDescription = null,
-                    modifier = modifier.size(MaterialTheme.dimen.base6x),
+                    modifier = Modifier.size(MaterialTheme.dimen.base6x),
                 )
-                Spacer(modifier = modifier.width(MaterialTheme.dimen.base2x))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimen.base2x))
                 Column(
                     modifier =
-                        modifier
+                        Modifier
                             .fillMaxWidth()
                             .weight(1f),
                     verticalArrangement = Arrangement.SpaceEvenly,
@@ -91,7 +91,7 @@ fun DetailSheet(
                                         },
                                 ),
                         )
-                        Spacer(modifier = modifier.width(MaterialTheme.dimen.tiny))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimen.tiny))
                         Text(
                             text = "(${coinDetail.symbol})",
                             maxLines = 1,
@@ -110,7 +110,7 @@ fun DetailSheet(
                                     fontWeight = FontWeight.Bold,
                                 ),
                         )
-                        Spacer(modifier = modifier.width(MaterialTheme.dimen.small))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimen.small))
                         Text(
                             text = formattedPrice,
                             style =
@@ -129,7 +129,7 @@ fun DetailSheet(
                                     fontWeight = FontWeight.Bold,
                                 ),
                         )
-                        Spacer(modifier = modifier.width(MaterialTheme.dimen.small))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimen.small))
                         Text(
                             text = formattedCap,
                             style =
@@ -146,7 +146,7 @@ fun DetailSheet(
             Text(
                 text = coinDetail.description.ifEmpty { stringResource(id = R.string.description) },
                 style = MaterialTheme.typography.labelMedium,
-                modifier = modifier.padding(vertical = MaterialTheme.dimen.base2x),
+                modifier = Modifier.padding(vertical = MaterialTheme.dimen.base2x),
             )
         }
         item {
@@ -159,6 +159,6 @@ fun DetailSheet(
                 }
             }
         }
-        item { Spacer(modifier = modifier.navigationBarsPadding()) }
+        item { Spacer(modifier = Modifier.navigationBarsPadding()) }
     }
 }

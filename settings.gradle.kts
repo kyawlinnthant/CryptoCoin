@@ -23,7 +23,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LineManWongNai"
+rootProject.name = "CryptoCoin"
 include(":app")
 include(":core:util", ":core:dispatcher", ":core:network", ":core:theme")
 include(":feature:coins:presentation", ":feature:coins:domain", ":feature:coins:data")

@@ -27,10 +27,10 @@ import com.kyawlinnthant.theme.dimen
 
 @Composable
 fun Top3Header(
-    modifier: Modifier = Modifier,
     windowWidth: WindowType,
     top3Rank: Top3Rank,
     onClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val horizontalAlignment =
         when (windowWidth) {
@@ -65,7 +65,7 @@ fun Top3Header(
         )
         Row(
             modifier =
-                modifier
+                Modifier
                     .fillMaxWidth()
                     .padding(vertical = MaterialTheme.dimen.base2x),
             horizontalArrangement = horizontalAlignment,
@@ -74,13 +74,13 @@ fun Top3Header(
                 onClick(top3Rank.rank1.uuid)
             })
             if (windowWidth != WindowType.Compact) {
-                Spacer(modifier = modifier.width(MaterialTheme.dimen.base2x))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimen.base2x))
             }
             TopHeader(coin = top3Rank.rank2, onClick = {
                 onClick(top3Rank.rank2.uuid)
             })
             if (windowWidth != WindowType.Compact) {
-                Spacer(modifier = modifier.width(MaterialTheme.dimen.base2x))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimen.base2x))
             }
             TopHeader(coin = top3Rank.rank3, onClick = {
                 onClick(top3Rank.rank3.uuid)
@@ -116,7 +116,7 @@ private fun Preview() {
                         ),
                 ),
             windowWidth = WindowType.Medium,
-        ) {
-        }
+            onClick = {},
+        )
     }
 }

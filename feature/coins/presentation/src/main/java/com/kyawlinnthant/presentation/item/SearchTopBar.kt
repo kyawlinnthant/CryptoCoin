@@ -36,15 +36,16 @@ import com.kyawlinnthant.theme.dimen
 fun SearchTopBar(
     modifier: Modifier = Modifier,
     searchQuery: String = "",
+    onTextChange: (String) -> Unit = {},
+    onClearQueryClick: () -> Unit = {},
     searchPlaceholder: String = stringResource(id = R.string.search),
-    onTextChanged: (String) -> Unit = {},
-    onClearQueryClicked: () -> Unit = {},
 ) {
     TopAppBar(
+        modifier = modifier,
         title = {
             Row(
                 modifier =
-                    modifier
+                    Modifier
                         .fillMaxWidth()
                         .height(height = MaterialTheme.dimen.base6x)
                         .padding(end = MaterialTheme.dimen.base2x)
@@ -57,16 +58,16 @@ fun SearchTopBar(
                     painter = painterResource(id = R.drawable.baseline_search_24),
                     contentDescription = null,
                 )
-                Spacer(modifier = modifier.width(MaterialTheme.dimen.base))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimen.base))
                 BasicTextField(
                     modifier =
-                        modifier
+                        Modifier
                             .fillMaxWidth()
                             .weight(
                                 weight = 1f,
                                 fill = false,
                             ),
-                    onValueChange = onTextChanged,
+                    onValueChange = onTextChange,
                     textStyle =
                         MaterialTheme.typography.bodyMedium.copy(
                             color = MaterialTheme.colorScheme.onSurface,
@@ -93,9 +94,9 @@ fun SearchTopBar(
                             value = MaterialTheme.colorScheme.primary,
                         ),
                 )
-                Spacer(modifier = modifier.width(MaterialTheme.dimen.base))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimen.base))
                 if (searchQuery.isNotEmpty()) {
-                    IconButton(onClick = onClearQueryClicked) {
+                    IconButton(onClick = onClearQueryClick) {
                         Icon(
                             painter = painterResource(id = R.drawable.baseline_close_24),
                             contentDescription = null,

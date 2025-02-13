@@ -34,13 +34,13 @@ import com.kyawlinnthant.util.CoinPriceDecimalPlace
 
 @Composable
 fun CoinItem(
-    modifier: Modifier = Modifier,
     image: String,
     name: String,
     currency: String,
     price: String,
     change: String,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val formattedPrice =
         CoinDisplayFormatter.formatCoinPrice(
@@ -77,7 +77,7 @@ fun CoinItem(
     ) {
         Row(
             modifier =
-                modifier
+                Modifier
                     .fillMaxWidth()
                     .padding(MaterialTheme.dimen.base2x),
             verticalAlignment = Alignment.CenterVertically,
@@ -90,11 +90,11 @@ fun CoinItem(
                         .decoderFactory(SvgDecoder.Factory())
                         .build(),
                 contentDescription = null,
-                modifier = modifier.size(MaterialTheme.dimen.base6x),
+                modifier = Modifier.size(MaterialTheme.dimen.base6x),
             )
             Column(
                 modifier =
-                    modifier
+                    Modifier
                         .fillMaxWidth()
                         .weight(weight = 1f, fill = false),
                 verticalArrangement = Arrangement.SpaceBetween,
@@ -108,7 +108,7 @@ fun CoinItem(
                             fontWeight = FontWeight.Bold,
                         ),
                 )
-                Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
                 Text(
                     text = currency,
                     maxLines = 1,
@@ -128,14 +128,14 @@ fun CoinItem(
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.labelLarge,
                 )
-                Spacer(modifier = modifier.height(MaterialTheme.dimen.base))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimen.base))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     icon?.let {
                         Icon(
                             painter = painterResource(id = it),
                             contentDescription = null,
                             tint = color,
-                            modifier = modifier.size(MaterialTheme.dimen.base2x),
+                            modifier = Modifier.size(MaterialTheme.dimen.base2x),
                         )
                     }
                     Text(
@@ -163,8 +163,8 @@ private fun Preview() {
             currency = "USD",
             price = "11233.2345456",
             change = "0.98",
-        ) {
-        }
+            onClick = {},
+        )
     }
 }
 
@@ -178,7 +178,7 @@ private fun NegativePreview() {
             currency = "USD",
             price = "11233.2345456",
             change = "-0.98",
-        ) {
-        }
+            onClick = {},
+        )
     }
 }

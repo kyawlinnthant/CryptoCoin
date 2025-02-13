@@ -18,16 +18,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,81 +36,37 @@ import com.kyawlinnthant.presentation.item.ErrorItem
 import com.kyawlinnthant.presentation.item.InviteFriendItem
 import com.kyawlinnthant.presentation.item.LoadingItem
 import com.kyawlinnthant.presentation.item.Top3Header
-import com.kyawlinnthant.presentation.state.RefreshEvent
 import com.kyawlinnthant.theme.WindowType
 import com.kyawlinnthant.theme.dimen
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CoinsContent(
-    modifier: Modifier = Modifier,
     coins: LazyPagingItems<CoinUiModel>,
     paddingValues: PaddingValues,
     isRefreshing: Boolean,
     windowWidth: WindowType,
-    refreshEvent: SharedFlow<RefreshEvent>,
     onRefresh: () -> Unit,
     onItemClick: (String) -> Unit,
     onInviteClick: () -> Unit,
-    onRefreshAll: (Int) -> Unit,
-    onRestartTimer: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val lazyListState = rememberLazyListState()
     val lazyGridState = rememberLazyGridState()
-    val pullToRefreshState = rememberPullToRefreshState()
     val configuration = LocalConfiguration.current
     val screenHeightDp = configuration.screenHeightDp.dp
 
-    val isScrolling by remember {
-        derivedStateOf {
-            lazyListState.isScrollInProgress || lazyGridState.isScrollInProgress
-        }
-    }
-
-    // when user starts scrolling, restart the 10s timer
-    if (isScrolling) {
-        onRestartTimer()
-    }
-
     coins.apply {
-        LaunchedEffect(key1 = coins.itemCount, key2 = coins.itemSnapshotList) {
-            refreshEvent.collectLatest {
-                when (it) {
-                    RefreshEvent.RefreshTimerReach -> {
-                        // when timer is end, check user is not scrolling and take Refresh action
-                        if (!isScrolling) {
-                            onRefreshAll(this@apply.itemCount)
-                        }
-                    }
-                }
-            }
-        }
-
-        if (pullToRefreshState.isRefreshing) {
-            LaunchedEffect(key1 = true) {
-                onRefresh()
-            }
-        }
-
-        LaunchedEffect(key1 = isRefreshing) {
-            if (isRefreshing) {
-                pullToRefreshState.startRefresh()
-            } else {
-                pullToRefreshState.endRefresh()
-            }
-        }
-
-        Box(
+        PullToRefreshBox(
+            isRefreshing = isRefreshing,
+            onRefresh = onRefresh,
             modifier =
                 modifier
                     .padding(paddingValues)
-                    .fillMaxSize()
-                    .nestedScroll(connection = pullToRefreshState.nestedScrollConnection),
+                    .fillMaxSize(),
         ) {
             LazyColumn(
-                modifier = modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 state = lazyListState,
                 contentPadding = PaddingValues(MaterialTheme.dimen.base2x),
                 verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimen.base),
@@ -145,7 +95,7 @@ fun CoinsContent(
                 item {
                     if (this@apply.itemCount != 0) {
                         Text(
-                            modifier = modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth(),
                             text = stringResource(id = R.string.buy),
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                         )
@@ -183,7 +133,7 @@ fun CoinsContent(
                             LazyVerticalGrid(
                                 columns = GridCells.Fixed(2),
                                 modifier =
-                                    modifier
+                                    Modifier
                                         .fillMaxWidth()
                                         .heightIn(max = screenHeightDp),
                                 contentPadding = PaddingValues(MaterialTheme.dimen.base2x),
@@ -221,7 +171,7 @@ fun CoinsContent(
                             LazyVerticalGrid(
                                 columns = GridCells.Fixed(3),
                                 modifier =
-                                    modifier
+                                    Modifier
                                         .fillMaxWidth()
                                         .heightIn(max = screenHeightDp),
                                 contentPadding = PaddingValues(MaterialTheme.dimen.base2x),
@@ -281,7 +231,7 @@ fun CoinsContent(
                                 // end item
                                 HorizontalDivider(
                                     modifier =
-                                        modifier
+                                        Modifier
                                             .fillMaxWidth()
                                             .padding(vertical = MaterialTheme.dimen.small),
                                 )
@@ -291,14 +241,14 @@ fun CoinsContent(
                 }
 
                 item {
-                    Spacer(modifier = modifier.navigationBarsPadding())
+                    Spacer(modifier = Modifier.navigationBarsPadding())
                 }
             }
 
             when (loadState.refresh) {
                 is LoadState.Loading -> {
                     Box(
-                        modifier = modifier.matchParentSize(),
+                        modifier = Modifier.matchParentSize(),
                         contentAlignment = Alignment.Center,
                     ) {
                         // should be FULL SCREEN LOADING
@@ -310,7 +260,7 @@ fun CoinsContent(
                     val error = this@apply.loadState.refresh as LoadState.Error
                     val message = error.error.localizedMessage ?: "Can't load data"
                     Box(
-                        modifier = modifier.matchParentSize(),
+                        modifier = Modifier.matchParentSize(),
                         contentAlignment = Alignment.Center,
                     ) {
                         // should be FULL SCREEN ERROR
@@ -326,11 +276,6 @@ fun CoinsContent(
 
                 is LoadState.NotLoading -> Unit
             }
-
-            PullToRefreshContainer(
-                state = pullToRefreshState,
-                modifier = modifier.align(Alignment.TopCenter),
-            )
         }
     }
 }

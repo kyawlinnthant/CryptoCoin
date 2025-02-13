@@ -36,10 +36,4 @@ subprojects {
         buildUponDefaultConfig = true
         config.setFrom(file("${rootProject.rootDir}/config/detekt/detekt.yml"))
     }
-    dependencies {
-        // todo : this is not working, version conflict with ktlint pinterest and compose.
-        //  we should wait compose rule release version
-//        "ktlintRuleset"(ruleKtlint)
-//        "detektPlugins"(ruleDetekt)
-    }
 }
