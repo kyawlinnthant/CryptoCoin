@@ -19,6 +19,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +36,7 @@ import com.kyawlinnthant.presentation.item.CoinItem
 import com.kyawlinnthant.presentation.item.ErrorItem
 import com.kyawlinnthant.presentation.item.InviteFriendItem
 import com.kyawlinnthant.presentation.item.LoadingItem
+import com.kyawlinnthant.presentation.item.RefreshIndicator
 import com.kyawlinnthant.presentation.item.Top3Header
 import com.kyawlinnthant.theme.WindowType
 import com.kyawlinnthant.theme.dimen
@@ -51,6 +53,7 @@ fun CoinsContent(
     onInviteClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val state = rememberPullToRefreshState()
     val lazyListState = rememberLazyListState()
     val lazyGridState = rememberLazyGridState()
     val configuration = LocalConfiguration.current
@@ -64,6 +67,13 @@ fun CoinsContent(
                 modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
+            indicator = {
+                RefreshIndicator(
+                    state = state,
+                    isRefreshing = isRefreshing,
+                    modifier = Modifier.align(Alignment.TopCenter),
+                )
+            },
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
