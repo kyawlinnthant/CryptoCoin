@@ -11,6 +11,8 @@ In this project, I utilized a modern Android development stack to ensure high-qu
 - **Material3** design system for UI consistency
 - **Androidx libraries** for lifecycle and architecture components
 - **Dagger Hilt** for dependency injection
+- **Ktlint** for code formatting
+- **Detekt** for code analysis
 - **Junit** for unit testing
 - **Mock Web Server** for API testing
 - **Turbine** for testing Flows
