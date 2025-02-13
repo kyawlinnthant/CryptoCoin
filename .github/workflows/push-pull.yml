@@ -16,6 +16,6 @@ jobs:
     name: Analysis
     uses: ./.github/workflows/detekt.yml
 
-  test:
+  unit-test:
     name: Unit Test
     uses: ./.github/workflows/test.yml
