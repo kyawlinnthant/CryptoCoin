@@ -55,7 +55,7 @@ Light and Dark modes, both orientations
 |<img src="https://github.com/user-attachments/assets/d16ce7e4-2b00-4322-846f-9c135706baa9" width = "250"/>|<img src="https://github.com/user-attachments/assets/06875a70-f8d6-4d83-958b-8f17b13d9361" width = "250"/>|
 
 Multiple devices support
-| HomePage | BottomSheet | 
+| HomePage Tablet | BottomSheet Tablet | 
 | - | - | 
 |<img src="https://github.com/user-attachments/assets/a9634fdf-aefc-46cb-9d7a-6cd9e1bd8a4a" width = "350"/>|<img src="https://github.com/user-attachments/assets/fc7701ac-56e0-4a6e-b1ea-3312982ffb27" width = "350"/>|
 
