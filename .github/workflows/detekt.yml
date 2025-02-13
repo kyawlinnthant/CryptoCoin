@@ -1,0 +1,22 @@
+name: Check Detekt
+
+on:
+  workflow_call:
+
+jobs:
+  detekt:
+    name: Check code analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Check the code analysis with detekt
+        run: ./gradlew detekt

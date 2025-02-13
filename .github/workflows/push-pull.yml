@@ -1,0 +1,21 @@
+name: On Pull Request Opened
+
+on:
+  #  push:
+  #    branches: [ "main" ]
+  #  pull_request:
+  #    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Format
+    uses: ./.github/workflows/ktlint.yml
+
+  detekt:
+    name: Analysis
+    uses: ./.github/workflows/detekt.yml
+
+  test:
+    name: Unit Test
+    uses: ./.github/workflows/test.yml
